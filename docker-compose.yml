@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_APP: run.py
+      SECRET_KEY: change-me
+      DATABASE_URL: sqlite:///architech.db
+      CORS_ORIGINS: http://localhost:4173,http://localhost:5173
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5000
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
