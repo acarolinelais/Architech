@@ -30,7 +30,7 @@ export function AboutPage() {
         ← Voltar para todos os posts
       </Link>
 
-      <div className="space-y-6 rounded-2xl bg-card p-10 text-center">
+      <div className="surface-card space-y-6 rounded-[2rem] p-10 text-center">
         {isLoading ? (
           <div className="flex flex-col items-center gap-4">
             <Skeleton className="h-32 w-32 rounded-2xl" />

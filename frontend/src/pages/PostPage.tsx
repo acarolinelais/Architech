@@ -5,8 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PostContent } from "@/components/posts/PostContent";
 import { fetchPost } from "@/lib/api";
-import { getCategoryBadgeVariant } from "@/lib/category-colors";
-import { formatDate } from "@/lib/utils";
+import { getCategoryBadgeVariant, getCategoryGradientClass } from "@/lib/category-colors";
+import { cn, formatDate } from "@/lib/utils";
 import type { PostDetail } from "@/types";
 
 export function PostPage() {
@@ -52,14 +52,19 @@ export function PostPage() {
       )}
 
       {error && !isLoading && (
-        <div className="rounded-2xl bg-card p-10 text-center text-sm text-muted-foreground">
+        <div className="surface-card rounded-[2rem] p-10 text-center text-sm text-muted-foreground">
           Post não encontrado.
         </div>
       )}
 
       {post && !isLoading && (
         <article className="space-y-6">
-          <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl bg-muted">
+          <div
+            className={cn(
+              "relative aspect-[16/7] w-full overflow-hidden rounded-[2rem]",
+              !post.cover_image && getCategoryGradientClass(post.category),
+            )}
+          >
             {post.cover_image && (
               <img
                 src={post.cover_image}

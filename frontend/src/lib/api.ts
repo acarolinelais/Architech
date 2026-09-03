@@ -1,5 +1,7 @@
 import type {
   CategoryWithTags,
+  ChatMessage,
+  Collection,
   ContactLink,
   PostDetail,
   PostSummary,
@@ -22,6 +24,7 @@ export interface PostFilters {
   q?: string;
   category?: string;
   tag?: string;
+  collection?: string;
   sort?: SortOrder;
 }
 
@@ -30,6 +33,7 @@ export function fetchPosts(filters: PostFilters = {}) {
   if (filters.q) params.set("q", filters.q);
   if (filters.category) params.set("category", filters.category);
   if (filters.tag) params.set("tag", filters.tag);
+  if (filters.collection) params.set("collection", filters.collection);
   if (filters.sort) params.set("sort", filters.sort);
 
   const query = params.toString();
@@ -54,4 +58,24 @@ export function fetchProjects() {
 
 export function fetchContactLinks() {
   return getJson<ContactLink[]>("/api/contact");
+}
+
+export function fetchCollections() {
+  return getJson<Collection[]>("/api/collections");
+}
+
+export async function postChatMessage(message: string, history: ChatMessage[]) {
+  const response = await fetch(`${API_URL}/api/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, history }),
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.error ?? "Falha ao falar com o Cleber.");
+  }
+
+  return data as { reply: string };
 }

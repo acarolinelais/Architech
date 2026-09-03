@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { getCategoryDotClass } from "@/lib/category-colors";
@@ -10,17 +9,28 @@ interface SidebarProps {
   isLoading: boolean;
   activeTag: string | null;
   onSelectTag: (slug: string) => void;
+  search: string;
+  onSearchChange: (value: string) => void;
 }
 
-export function Sidebar({ categories, isLoading, activeTag, onSelectTag }: SidebarProps) {
+export function Sidebar({
+  categories,
+  isLoading,
+  activeTag,
+  onSelectTag,
+  search,
+  onSearchChange,
+}: SidebarProps) {
   return (
-    <aside className="flex h-fit flex-col gap-8 rounded-2xl bg-card p-8">
-      <Link to="/" className="flex items-center gap-2">
-        <img src="/Logo.png" alt="Architech" className="h-8 w-auto" />
-      </Link>
+    <div className="flex h-fit flex-col gap-6">
+      <Input
+        value={search}
+        onChange={(event) => onSearchChange(event.target.value)}
+        placeholder="Search keyword..."
+      />
 
-      <div>
-        <h2 className="mb-4 text-lg font-semibold">Tags</h2>
+      <aside className="surface-card flex h-fit flex-col gap-4 rounded-[2rem] p-8">
+        <h2 className="text-lg font-semibold">Tags</h2>
 
         {isLoading ? (
           <div className="space-y-3">
@@ -61,7 +71,7 @@ export function Sidebar({ categories, isLoading, activeTag, onSelectTag }: Sideb
             ))}
           </nav>
         )}
-      </div>
-    </aside>
+      </aside>
+    </div>
   );
 }

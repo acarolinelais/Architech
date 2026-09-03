@@ -28,12 +28,16 @@ def create_app():
     from app.routes.profile import profile_bp
     from app.routes.projects import projects_bp
     from app.routes.contact import contact_bp
+    from app.routes.collections import collections_bp
+    from app.routes.chat import chat_bp
 
     app.register_blueprint(posts_bp, url_prefix="/api/posts")
     app.register_blueprint(tags_bp, url_prefix="/api/tags")
     app.register_blueprint(profile_bp, url_prefix="/api/profile")
     app.register_blueprint(projects_bp, url_prefix="/api/projects")
     app.register_blueprint(contact_bp, url_prefix="/api/contact")
+    app.register_blueprint(collections_bp, url_prefix="/api/collections")
+    app.register_blueprint(chat_bp, url_prefix="/api/chat")
 
     @app.get("/api/health")
     def health():

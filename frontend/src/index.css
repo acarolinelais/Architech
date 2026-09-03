@@ -32,7 +32,10 @@
     --frontend: 330 81% 60%;
     --frontend-foreground: 0 0% 100%;
 
-    --radius: 1rem;
+    --brand: 240 86% 80%;
+    --brand-foreground: 243 60% 22%;
+
+    --radius: 1.5rem;
   }
 
   .dark {
@@ -63,6 +66,9 @@
 
     --frontend: 330 81% 66%;
     --frontend-foreground: 0 0% 100%;
+
+    --brand: 240 89% 78%;
+    --brand-foreground: 243 70% 95%;
   }
 }
 
@@ -71,8 +77,31 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
+    min-height: 100vh;
+    background-color: hsl(var(--background));
+    background-image: linear-gradient(
+        hsl(var(--background) / 0.3),
+        hsl(var(--background) / 0.3)
+      ),
+      url("/background.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
+
+  .dark body {
+    background-image: linear-gradient(
+        hsl(var(--background) / 0.78),
+        hsl(var(--background) / 0.78)
+      ),
+      url("/background.jpg");
+  }
+}
+
+.surface-card {
+  @apply bg-card/75 shadow-[0_8px_30px_-4px_rgb(0,0,0,0.08)] backdrop-blur-xl dark:bg-card/70 dark:shadow-[0_8px_30px_-4px_rgb(0,0,0,0.35)];
 }
 
 .line-clamp-2 {

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { Badge } from "@/components/ui/badge";
-import { getCategoryBadgeVariant } from "@/lib/category-colors";
+import { getCategoryBadgeVariant, getCategoryGradientClass } from "@/lib/category-colors";
 import { cn, formatDate } from "@/lib/utils";
 import type { PostSummary } from "@/types";
 
@@ -9,9 +9,14 @@ export function PostCard({ post }: { post: PostSummary }) {
   return (
     <Link
       to={`/posts/${post.slug}`}
-      className="block space-y-5 rounded-2xl bg-card p-6 transition-shadow hover:shadow-sm"
+      className="surface-card block space-y-5 rounded-[2rem] p-6 transition-transform hover:-translate-y-0.5"
     >
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-muted">
+      <div
+        className={cn(
+          "relative aspect-[16/9] w-full overflow-hidden rounded-2xl",
+          !post.cover_image && getCategoryGradientClass(post.category),
+        )}
+      >
         {post.cover_image ? (
           <img
             src={post.cover_image}

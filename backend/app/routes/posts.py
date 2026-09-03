@@ -28,6 +28,10 @@ def list_posts():
     if tag:
         query = query.join(Post.tags).filter_by(slug=tag)
 
+    collection = request.args.get("collection", "").strip()
+    if collection:
+        query = query.join(Post.collections).filter_by(slug=collection)
+
     sort = request.args.get("sort", "desc").lower()
     order = Post.published_at.asc() if sort == "asc" else Post.published_at.desc()
     query = query.order_by(order)

@@ -29,7 +29,7 @@ export function PostFilters({
       : (categories.find((item) => item.slug === category)?.name ?? "All Posts");
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="surface-card flex items-center justify-between rounded-2xl px-6 py-4">
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-2 text-xl font-semibold outline-none">
           {activeLabel}
