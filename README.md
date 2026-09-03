@@ -49,3 +49,11 @@ docker compose up --build
 | GET    | `/api/profile`         | Dados do perfil                                         |
 | GET    | `/api/projects`        | Lista de projetos                                       |
 | GET    | `/api/contact`         | Links de contato                                         |
+| GET    | `/api/collections`     | Lista de coleções (grupos curados de posts)              |
+| POST   | `/api/chat`            | Pergunta ao "Ask Cleber". Body: `{message, history?}`    |
+
+## Ask Cleber
+
+O chat "Ask Cleber" usa a [API do Gemini](https://aistudio.google.com/apikey) (camada gratuita
+do Google). Crie uma API key gratuita e defina `GEMINI_API_KEY` no `.env` do backend — sem ela,
+o endpoint responde com uma mensagem de indisponibilidade em vez de erro.

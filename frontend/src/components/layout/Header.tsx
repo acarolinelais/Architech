@@ -1,29 +1,24 @@
 import { Link } from "react-router-dom";
 
-import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-interface HeaderProps {
-  search: string;
-  onSearchChange: (value: string) => void;
-}
-
-export function Header({ search, onSearchChange }: HeaderProps) {
+export function Header() {
   return (
-    <header className="flex items-center gap-6">
-      <Input
-        value={search}
-        onChange={(event) => onSearchChange(event.target.value)}
-        placeholder="Search keyword..."
-        className="flex-1"
-      />
-      <Link
-        to="/about"
-        className="whitespace-nowrap text-sm text-muted-foreground transition-colors hover:text-foreground"
-      >
-        About
+    <header className="surface-card flex items-center justify-between rounded-2xl px-6 py-4">
+      <Link to="/" className="flex items-center gap-2">
+        <img src="/logo-mark.png" alt="" className="h-8 w-auto" />
+        <span className="text-xl font-semibold text-foreground">Architech</span>
       </Link>
-      <ThemeToggle />
+
+      <div className="flex items-center gap-6">
+        <Link
+          to="/about"
+          className="whitespace-nowrap text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          About
+        </Link>
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

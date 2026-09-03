@@ -55,3 +55,15 @@ export interface ContactLink {
 }
 
 export type SortOrder = "desc" | "asc";
+
+export interface Collection {
+  id: number;
+  name: string;
+  slug: string;
+  post_count: number;
+}
+
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}

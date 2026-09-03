@@ -10,6 +10,7 @@ export function usePosts() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [category, setCategory] = useState<string>("all");
   const [tag, setTag] = useState<string | null>(null);
+  const [collection, setCollection] = useState<string | null>(null);
   const [sort, setSort] = useState<SortOrder>("desc");
 
   const [posts, setPosts] = useState<PostSummary[]>([]);
@@ -33,6 +34,7 @@ export function usePosts() {
       q: debouncedSearch || undefined,
       category: category === "all" ? undefined : category,
       tag: tag ?? undefined,
+      collection: collection ?? undefined,
       sort,
     })
       .then((data) => {
@@ -48,10 +50,15 @@ export function usePosts() {
     return () => {
       cancelled = true;
     };
-  }, [debouncedSearch, category, tag, sort]);
+  }, [debouncedSearch, category, tag, collection, sort]);
 
   const toggleTag = useMemo(
     () => (slug: string) => setTag((current) => (current === slug ? null : slug)),
+    [],
+  );
+
+  const toggleCollection = useMemo(
+    () => (slug: string) => setCollection((current) => (current === slug ? null : slug)),
     [],
   );
 
@@ -66,6 +73,9 @@ export function usePosts() {
     tag,
     setTag,
     toggleTag,
+    collection,
+    setCollection,
+    toggleCollection,
     sort,
     setSort,
   };

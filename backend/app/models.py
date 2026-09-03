@@ -8,6 +8,12 @@ post_tags = db.Table(
     db.Column("tag_id", db.Integer, db.ForeignKey("tag.id"), primary_key=True),
 )
 
+collection_posts = db.Table(
+    "collection_posts",
+    db.Column("collection_id", db.Integer, db.ForeignKey("collection.id"), primary_key=True),
+    db.Column("post_id", db.Integer, db.ForeignKey("post.id"), primary_key=True),
+)
+
 
 class Category(db.Model):
     """Top-level grouping used both as a post's badge and as the tags sidebar section."""
@@ -75,6 +81,24 @@ class Post(db.Model):
 
     def to_detail_dict(self):
         return {**self.to_summary_dict(), "content": self.content}
+
+
+class Collection(db.Model):
+    """A curated grouping of posts, shown in the sidebar (e.g. "Front-End")."""
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    slug = db.Column(db.String(80), unique=True, nullable=False)
+
+    posts = db.relationship("Post", secondary=collection_posts, backref="collections")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "slug": self.slug,
+            "post_count": len(self.posts),
+        }
 
 
 class Profile(db.Model):

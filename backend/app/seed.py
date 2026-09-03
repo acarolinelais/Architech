@@ -4,7 +4,7 @@ import click
 from flask.cli import with_appcontext
 
 from app import db
-from app.models import Category, ContactLink, Post, Profile, Project, Tag
+from app.models import Category, Collection, ContactLink, Post, Profile, Project, Tag
 
 PYTHON_CONTENT = """\
 ## O que é Python?
@@ -129,33 +129,34 @@ def seed_database():
     # keep the sidebar tag list stable even though only some tags are used on posts below
     _ = (docker, api_rest, react_js, typescript_tag)
 
-    db.session.add_all(
-        [
-            Post(
-                slug="nocoes-basicas-de-python",
-                title="Noções Básicas de Python",
-                excerpt=(
-                    "Este resumo abrange os conceitos básicos para quem está começando a "
-                    "programar ou quer entender as funções da linguagem."
-                ),
-                content=PYTHON_CONTENT,
-                published_at=date(2026, 8, 17),
-                category=backend,
-                tags=[python_tag, poo_tag],
-            ),
-            Post(
-                slug="nocoes-basicas-de-react",
-                title="Noções Básicas de React",
-                excerpt=(
-                    "Este resumo abrange os conceitos básicos para quem está começando a "
-                    "programar ou quer entender as funções da linguagem."
-                ),
-                content=REACT_CONTENT,
-                published_at=date(2026, 8, 17),
-                category=frontend,
-                tags=[react_tag],
-            ),
-        ]
+    python_post = Post(
+        slug="nocoes-basicas-de-python",
+        title="Noções Básicas de Python",
+        excerpt=(
+            "Este resumo abrange os conceitos básicos para quem está começando a "
+            "programar ou quer entender as funções da linguagem."
+        ),
+        content=PYTHON_CONTENT,
+        published_at=date(2026, 8, 17),
+        category=backend,
+        tags=[python_tag, poo_tag],
+    )
+    react_post = Post(
+        slug="nocoes-basicas-de-react",
+        title="Noções Básicas de React",
+        excerpt=(
+            "Este resumo abrange os conceitos básicos para quem está começando a "
+            "programar ou quer entender as funções da linguagem."
+        ),
+        content=REACT_CONTENT,
+        published_at=date(2026, 8, 17),
+        category=frontend,
+        tags=[react_tag],
+    )
+    db.session.add_all([python_post, react_post])
+
+    db.session.add(
+        Collection(name="Front-End", slug="front-end", posts=[react_post]),
     )
 
     db.session.add(
@@ -168,7 +169,7 @@ def seed_database():
                 "desenvolvimento de software e design thinking. Este espaço reúne resumos e "
                 "anotações de estudo sobre programação."
             ),
-            avatar_url=None,
+            avatar_url="/avatar.png",
             avatar_initials="CL",
         )
     )

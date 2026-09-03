@@ -42,7 +42,7 @@ export function ProfileSidebar() {
       <section className="space-y-4">
         <SectionHeading icon={<ProfileIcon className="h-5 w-5" />} label="Profile" />
 
-        <div className="flex flex-col items-center gap-4 rounded-2xl bg-card p-8 text-center">
+        <div className="surface-card flex flex-col items-center gap-4 rounded-[2rem] p-8 text-center">
           {isLoading ? (
             <>
               <Skeleton className="h-32 w-32 rounded-2xl" />
@@ -67,7 +67,7 @@ export function ProfileSidebar() {
       <section className="space-y-4">
         <SectionHeading icon={<ProjectIcon className="h-5 w-5" />} label="Projects" />
 
-        <div className="space-y-2 rounded-2xl bg-card p-4">
+        <div className="surface-card space-y-2 rounded-[2rem] p-4">
           {isLoading ? (
             <>
               <Skeleton className="h-12 w-full rounded-xl" />
@@ -84,7 +84,7 @@ export function ProfileSidebar() {
       <section className="space-y-4">
         <SectionHeading icon={<ContactIcon className="h-5 w-5" />} label="Contact" />
 
-        <div className="space-y-2 rounded-2xl bg-card p-4">
+        <div className="surface-card space-y-2 rounded-[2rem] p-4">
           {isLoading ? (
             <>
               <Skeleton className="h-12 w-full rounded-xl" />
@@ -102,7 +102,7 @@ export function ProfileSidebar() {
 function SectionHeading({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="flex items-center gap-2 text-lg font-semibold">
-      {icon}
+      <span className="text-brand">{icon}</span>
       {label}
     </div>
   );
