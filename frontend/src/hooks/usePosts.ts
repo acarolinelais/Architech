@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { fetchPosts } from "@/lib/api";
 import type { PostSummary, SortOrder } from "@/types";
@@ -6,11 +7,14 @@ import type { PostSummary, SortOrder } from "@/types";
 const SEARCH_DEBOUNCE_MS = 300;
 
 export function usePosts() {
-  const [search, setSearch] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [searchParams] = useSearchParams();
+  const [search, setSearch] = useState(() => searchParams.get("q") ?? "");
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [category, setCategory] = useState<string>("all");
   const [tag, setTag] = useState<string | null>(null);
-  const [collection, setCollection] = useState<string | null>(null);
+  const [collection, setCollection] = useState<string | null>(
+    () => searchParams.get("collection"),
+  );
   const [sort, setSort] = useState<SortOrder>("desc");
 
   const [posts, setPosts] = useState<PostSummary[]>([]);

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Github, Linkedin } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -9,10 +8,10 @@ import { ProjectIcon } from "@/components/icons/Project";
 import { fetchContactLinks, fetchProfile, fetchProjects } from "@/lib/api";
 import type { ContactLink, Profile, Project } from "@/types";
 
-const PLATFORM_ICON = {
-  github: Github,
-  linkedin: Linkedin,
-} as const;
+const PLATFORM_ICON_SRC: Record<string, string> = {
+  github: "/github.png",
+  linkedin: "/linkedin.png",
+};
 
 export function ProfileSidebar() {
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -102,16 +101,16 @@ export function ProfileSidebar() {
 function SectionHeading({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="flex items-center gap-2 text-lg font-semibold">
-      <span className="text-brand">{icon}</span>
       {label}
+      <span className="text-brand">{icon}</span>
     </div>
   );
 }
 
 function ProjectRow({ project }: { project: Project }) {
   const content = (
-    <div className="flex items-center gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-accent">
-      <span className="h-9 w-9 shrink-0 rounded-lg bg-muted" />
+    <div className="flex items-center gap-3 rounded-2xl px-3 py-3 transition-colors hover:bg-accent">
+      <span className="h-9 w-9 shrink-0 rounded-[0.9rem] bg-muted" />
       <span className="text-sm font-medium">{project.name}</span>
     </div>
   );
@@ -126,17 +125,21 @@ function ProjectRow({ project }: { project: Project }) {
 }
 
 function ContactRow({ link }: { link: ContactLink }) {
-  const Icon = PLATFORM_ICON[link.platform as keyof typeof PLATFORM_ICON] ?? Github;
+  const iconSrc = PLATFORM_ICON_SRC[link.platform];
 
   return (
     <a
       href={link.url}
       target="_blank"
       rel="noreferrer"
-      className="flex items-center gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-accent"
+      className="flex items-center gap-3 rounded-2xl px-3 py-3 transition-colors hover:bg-accent"
     >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-muted">
-        <Icon className="h-4 w-4" />
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.9rem] bg-muted">
+        {iconSrc ? (
+          <img src={iconSrc} alt="" className="h-4 w-4" />
+        ) : (
+          <ContactIcon className="h-4 w-4 text-brand" />
+        )}
       </span>
       <span className="text-sm font-medium">{link.label}</span>
     </a>

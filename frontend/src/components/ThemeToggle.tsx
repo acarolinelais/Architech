@@ -11,7 +11,7 @@ export function ThemeToggle() {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full border-border bg-secondary text-foreground"
+      className="shrink-0 rounded-full border-border bg-secondary text-brand"
       aria-label={theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro"}
     >
       {theme === "dark" ? (

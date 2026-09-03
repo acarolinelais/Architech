@@ -12,9 +12,9 @@ const SLUG_TO_DOT_CLASS: Record<string, string> = {
   frontend: "bg-frontend",
 };
 
-const SLUG_TO_GRADIENT_CLASS: Record<string, string> = {
-  backend: "bg-gradient-to-br from-backend to-brand",
-  frontend: "bg-gradient-to-br from-frontend to-brand",
+const SLUG_TO_FILL_CLASS: Record<string, string> = {
+  backend: "bg-backend",
+  frontend: "bg-frontend",
 };
 
 export function getCategoryBadgeVariant(category: Pick<Category, "slug">): BadgeVariant {
@@ -25,6 +25,6 @@ export function getCategoryDotClass(category: Pick<Category, "slug">): string {
   return SLUG_TO_DOT_CLASS[category.slug] ?? "bg-muted-foreground";
 }
 
-export function getCategoryGradientClass(category: Pick<Category, "slug">): string {
-  return SLUG_TO_GRADIENT_CLASS[category.slug] ?? "bg-gradient-to-br from-brand to-muted";
+export function getCategoryFillClass(category: Pick<Category, "slug">): string {
+  return SLUG_TO_FILL_CLASS[category.slug] ?? "bg-brand";
 }

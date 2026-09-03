@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
-import { Send, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SparklesIcon } from "@/components/icons/Sparkles";
 import { postChatMessage } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import type { ChatMessage } from "@/types";
@@ -42,8 +42,8 @@ export function AskCleberCard() {
   return (
     <section className="surface-card space-y-4 rounded-[2rem] p-6">
       <div className="flex items-center gap-2 text-lg font-semibold">
-        <Sparkles className="h-5 w-5 text-brand" />
         Ask Cleber
+        <SparklesIcon className="h-5 w-5 text-brand" />
       </div>
 
       {messages.length > 0 && (
@@ -80,7 +80,7 @@ export function AskCleberCard() {
           disabled={isSending || !input.trim()}
           className="shrink-0 rounded-full bg-brand text-brand-foreground hover:opacity-90"
         >
-          <Send className="h-4 w-4" />
+          <img src="/chat-send.png" alt="Enviar" className="h-4 w-4" />
         </Button>
       </form>
     </section>

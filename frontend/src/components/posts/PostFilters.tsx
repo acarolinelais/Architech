@@ -29,9 +29,9 @@ export function PostFilters({
       : (categories.find((item) => item.slug === category)?.name ?? "All Posts");
 
   return (
-    <div className="surface-card flex items-center justify-between rounded-2xl px-6 py-4">
+    <div className="flex items-center justify-between border-b border-border px-6 py-4">
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center gap-2 text-xl font-semibold outline-none">
+        <DropdownMenuTrigger className="flex items-center gap-2 text-md font-semibold outline-none">
           {activeLabel}
           <ArrowIcon className="h-2.5 w-2.5 text-muted-foreground" />
         </DropdownMenuTrigger>
