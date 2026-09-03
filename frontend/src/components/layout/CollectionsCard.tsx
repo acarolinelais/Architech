@@ -45,7 +45,7 @@ export function CollectionsCard({
                 activeCollection === collection.slug && "bg-accent",
               )}
             >
-              <span className="grid h-10 w-10 shrink-0 grid-cols-2 gap-1 rounded-xl bg-brand/20 p-2.5">
+              <span className="grid h-10 w-10 shrink-0 grid-cols-2 gap-1 rounded-[0.9rem] bg-brand/20 p-2.5">
                 <span className="rounded-full bg-brand" />
                 <span className="rounded-full bg-brand/40" />
                 <span className="rounded-full bg-brand/40" />

@@ -11,7 +11,7 @@ interface PostListProps {
 export function PostList({ posts, isLoading, error }: PostListProps) {
   if (error) {
     return (
-      <div className="surface-card rounded-[2rem] p-10 text-center text-sm text-muted-foreground">
+      <div className="rounded-2xl bg-secondary p-10 text-center text-sm text-muted-foreground">
         Não foi possível carregar os posts. Verifique se o backend está rodando em{" "}
         <code>http://localhost:5000</code>.
       </div>
@@ -29,7 +29,7 @@ export function PostList({ posts, isLoading, error }: PostListProps) {
 
   if (posts.length === 0) {
     return (
-      <div className="surface-card rounded-[2rem] p-10 text-center text-sm text-muted-foreground">
+      <div className="rounded-2xl bg-secondary p-10 text-center text-sm text-muted-foreground">
         Nenhum post encontrado para esse filtro.
       </div>
     );
