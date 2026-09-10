@@ -5,26 +5,26 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 6%;
+    --foreground: 40 3% 27%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 6%;
+    --card-foreground: 40 3% 27%;
 
-    --primary: 0 0% 6%;
+    --primary: 40 3% 27%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 94%;
-    --secondary-foreground: 0 0% 6%;
+    --secondary-foreground: 40 3% 27%;
 
     --muted: 0 0% 93%;
-    --muted-foreground: 0 0% 45%;
+    --muted-foreground: 60 2% 60%;
 
     --accent: 0 0% 92%;
-    --accent-foreground: 0 0% 6%;
+    --accent-foreground: 40 3% 27%;
 
     --border: 0 0% 89%;
     --input: 0 0% 89%;
-    --ring: 0 0% 6%;
+    --ring: 328 56% 46%;
 
     --backend: 243 75% 59%;
     --backend-foreground: 0 0% 100%;
@@ -32,8 +32,8 @@
     --frontend: 330 81% 60%;
     --frontend-foreground: 0 0% 100%;
 
-    --brand: 240 86% 80%;
-    --brand-foreground: 243 60% 22%;
+    --brand: 328 56% 46%;
+    --brand-foreground: 0 0% 100%;
 
     --radius: 1.5rem;
   }
@@ -67,8 +67,8 @@
     --frontend: 330 81% 66%;
     --frontend-foreground: 0 0% 100%;
 
-    --brand: 240 86% 80%;
-    --brand-foreground: 243 60% 22%;
+    --brand: 328 65% 62%;
+    --brand-foreground: 0 0% 100%;
   }
 }
 
@@ -101,6 +101,18 @@
 
 .dark .page-backdrop {
   background-color: hsl(var(--background) / 0.72);
+}
+
+.brand-gradient {
+  background-image: linear-gradient(180deg, #ffdbff 0%, #ffc3f1 100%);
+}
+
+.dark .brand-gradient {
+  background-image: linear-gradient(
+    180deg,
+    hsl(var(--brand) / 0.3) 0%,
+    hsl(var(--brand) / 0.16) 100%
+  );
 }
 
 .line-clamp-2 {

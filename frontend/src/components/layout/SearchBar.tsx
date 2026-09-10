@@ -20,6 +20,13 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
         />
       </div>
       <ThemeToggle />
+      <span
+        role="img"
+        aria-label="Notificações"
+        className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-pink-100 dark:bg-pink-950"
+      >
+        <img src="/sun.svg" alt="" className="h-4 w-4" />
+      </span>
     </div>
   );
 }

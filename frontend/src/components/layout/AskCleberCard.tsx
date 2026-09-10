@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ArrowIcon } from "@/components/icons/Arrow";
 import { SparklesIcon } from "@/components/icons/Sparkles";
 import { postChatMessage } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -40,8 +41,8 @@ export function AskCleberCard() {
   }
 
   return (
-    <section className="surface-card space-y-4 rounded-[2rem] p-6">
-      <div className="flex items-center gap-2 text-lg font-semibold">
+    <section className="brand-gradient space-y-4 rounded-[2rem] p-6 shadow-sm">
+      <div className="flex items-center gap-2 text-lg font-semibold text-brand">
         Ask Cleber
         <SparklesIcon className="h-5 w-5 text-brand" />
       </div>
@@ -54,8 +55,8 @@ export function AskCleberCard() {
               className={cn(
                 "rounded-2xl px-3 py-2 text-sm",
                 message.role === "user"
-                  ? "bg-accent text-foreground"
-                  : "bg-brand/15 text-foreground",
+                  ? "bg-white/70 text-foreground dark:bg-black/20"
+                  : "bg-brand text-brand-foreground",
               )}
             >
               {message.content}
@@ -72,7 +73,7 @@ export function AskCleberCard() {
           onChange={(event) => setInput(event.target.value)}
           placeholder="Ask anything..."
           disabled={isSending}
-          className="flex-1"
+          className="flex-1 bg-white/90 dark:bg-background/80"
         />
         <Button
           type="submit"
@@ -80,7 +81,7 @@ export function AskCleberCard() {
           disabled={isSending || !input.trim()}
           className="shrink-0 rounded-full bg-brand text-brand-foreground hover:opacity-90"
         >
-          <img src="/chat-send.png" alt="Enviar" className="h-4 w-4" />
+          <ArrowIcon className="h-3.5 w-3.5 rotate-180" aria-label="Enviar" />
         </Button>
       </form>
     </section>
